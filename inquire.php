@@ -9,7 +9,7 @@
     while($inca = $result -> fetch_assoc()){
         $aID = $inca['ID'];
         $p = $inca['price'];
-        echo "<tr><td>$aID</td><td>$p</td></tr>";
+        echo "<tr><td>$aID</td><td>\$$p</td></tr>";
     }
     echo "</table>";
 ?>

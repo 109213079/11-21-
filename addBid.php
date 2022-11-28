@@ -3,7 +3,8 @@
 
     $n = $_POST['n'];
     $rp = $_POST['rp'];
-    $addC = "INSERT INTO `bid`(`name`, `reserve price`) VALUES ('{$n}', {$rp})";
+    $d = $_POST['d'];
+    $addC = "INSERT INTO `bid`(`name`, `reserve price`, `deadline`) VALUES ('{$n}', {$rp}, '{$d}')";
     mysqli_query($db_link, $addC);
 ?>
 

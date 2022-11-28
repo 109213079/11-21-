@@ -26,18 +26,19 @@
             <hr>
             <h3>標案清單</h3>
             <table align=center border="2" cellpadding="5">
-                <tr><th>編號</th><th>名稱</th><th>底價</th><th>下標</th><th>目前標價價格</th></tr>
+                <tr><th>編號</th><th>名稱</th><th>底價</th><th>目前標價</th><th>下標</th><th>截止日期</th></tr>
                 <?php
                     echo "<form action='auction.php' method='post'>";
-                    $sql = "SELECT `ID`, `name`, `reserve price`, `now price` FROM `bid`";
+                    $sql = "SELECT `ID`, `name`, `reserve price`, `now price`, `deadline` FROM `bid`";
                     $result = mysqli_query($db_link, $sql);
                     while($row = $result -> fetch_assoc()){
                         if($row['ID'] != '')
                             echo "<tr><td name='ID{$row['ID']}'>{$row['ID']}</td><td>{$row['name']}</td>
-                            <td>\${$row['reserve price']}</td><td>\${$row['now price']}</td><td>出價：<input type='text' name='number{$row['ID']}' size='7'> </td></tr>";
+                            <td>\${$row['reserve price']}</td><td>\${$row['now price']}</td><td>出價：<input type='text' name='number{$row['ID']}' size='7'></td>
+                            <td>{$row['deadline']}</td></tr>";
                     }
 
-                    echo "<tr><td colspan='5'><input type='submit' value='下標'/></td></tr></form>";
+                    echo "<tr><td colspan='6'><input type='submit' value='下標'/></td></tr></form>";
                 ?>
             </table>
             <hr>

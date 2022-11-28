@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-11-21 10:03:20
+-- 產生時間： 2022-11-28 09:31:22
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 8.1.5
 
@@ -37,12 +37,15 @@ CREATE TABLE `auction` (
 --
 
 INSERT INTO `auction` (`ID`, `price`) VALUES
+(1, 2000),
+(1, 2000),
 (1, 1000),
-(2, 600),
-(1, 1200),
-(2, 510),
-(1, 3000),
-(2, 700);
+(1, 2000),
+(1, 1000),
+(1, 2000),
+(2, 520),
+(4, 4110),
+(5, 500);
 
 -- --------------------------------------------------------
 
@@ -53,17 +56,22 @@ INSERT INTO `auction` (`ID`, `price`) VALUES
 CREATE TABLE `bid` (
   `ID` int(11) NOT NULL,
   `name` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `reserve price` int(11) NOT NULL
+  `reserve price` int(11) NOT NULL,
+  `now price` int(11) NOT NULL DEFAULT 0,
+  `deadline` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `bid`
 --
 
-INSERT INTO `bid` (`ID`, `name`, `reserve price`) VALUES
-(1, '花瓶', 1000),
-(2, '時鐘', 500),
-(4, '手錶', 4000);
+INSERT INTO `bid` (`ID`, `name`, `reserve price`, `now price`, `deadline`) VALUES
+(1, '花瓶', 1000, 2000, '2022-11-29'),
+(2, '時鐘', 500, 520, NULL),
+(4, '手錶', 4000, 4110, NULL),
+(5, '花', 100, 500, NULL),
+(6, '椅子', 200, 0, '2022-12-07'),
+(7, '電腦', 30000, 0, '2022-12-02');
 
 --
 -- 已傾印資料表的索引
@@ -83,7 +91,7 @@ ALTER TABLE `bid`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `bid`
 --
 ALTER TABLE `bid`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
